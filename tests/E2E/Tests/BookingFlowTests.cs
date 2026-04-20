@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using Microsoft.Playwright;
-using NUnit.Framework;
+using Xunit;
 
 namespace E2E.Tests
 {
     public class BookingFlowTests
     {
-        [Test]
+        [Fact]
         public async Task LandingPageHasBookingButton()
         {
             using var playwright = await Playwright.CreateAsync();
@@ -14,13 +14,14 @@ namespace E2E.Tests
             var page = await browser.NewPageAsync();
             await page.GotoAsync("http://localhost:5000/");
 
-            Assert.That(await page.TitleAsync(), Is.Not.Empty, "Landing page title should not be empty");
+            var title = await page.TitleAsync();
+            Assert.NotEmpty(title);
 
             var hasBooking = (await page.QuerySelectorAsync("button#start-booking")) != null
                              || (await page.QuerySelectorAsync("text=Book")) != null
                              || (await page.QuerySelectorAsync("text=Booking")) != null;
 
-            Assert.IsTrue(hasBooking, "Booking flow button should exist on the landing page");
+            Assert.True(hasBooking, "Booking flow button should exist on the landing page");
         }
     }
 }
