@@ -1,0 +1,63 @@
+name: Playwright E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore .NET dependencies
+        run: dotnet restore
+
+      - name: Install Playwright dependencies
+        # Install Playwright CLI tool locally and run playwright install --with-deps
+        # This ensures browser binaries and system dependencies are set up.
+        run: |
+          dotnet tool install --tool-path .dotnet/tools Microsoft.Playwright.CLI
+          .dotnet/tools/playwright install --with-deps
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Start web app
+        # Start the web app in the background on port 5000
+        # Adjust the app path and startup command as needed
+        run: |
+          # Example: dotnet run --project src/WebApp/WebApp.csproj &
+          # For now, we skip app startup since no app project exists yet
+          echo "Web app startup would go here (port 5000)"
+        continue-on-error: true
+
+      - name: Wait for web app to be ready
+        run: |
+          # Give the app time to start
+          sleep 3
+          # Optional: Add a health check curl here if desired
+        continue-on-error: true
+
+      - name: Run E2E tests
+        run: dotnet test ./tests/E2E/E2E.csproj --configuration Release --no-build --logger "console;verbosity=detailed"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          # Kill any lingering processes from the web app startup
+          pkill -f "dotnet run" || true
