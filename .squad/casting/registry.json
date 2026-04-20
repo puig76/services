@@ -1,0 +1,11 @@
+{
+  "entries": [
+    { "persistent_name": "keaton", "universe": "Foundations", "created_at": "2026-04-20T00:00:00Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "dallas", "universe": "Foundations", "created_at": "2026-04-20T00:00:00Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "fenster", "universe": "Foundations", "created_at": "2026-04-20T00:00:00Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "hockney", "universe": "Foundations", "created_at": "2026-04-20T00:00:00Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "redfoot", "universe": "Foundations", "created_at": "2026-04-20T00:00:00Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "scribe", "universe": "system", "created_at": "2026-04-20T00:00:00Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "ralph", "universe": "system", "created_at": "2026-04-20T00:00:00Z", "legacy_named": false, "status": "active" }
+  ]
+}

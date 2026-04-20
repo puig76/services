@@ -1,0 +1,3 @@
+# History — Scribe
+## Learnings
+- Seeded.

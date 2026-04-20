@@ -1,0 +1,3 @@
+# History — Ralph
+## Learnings
+- Seeded.
