@@ -5,3 +5,34 @@
 .squad/sessions/
 # Squad: SubSquad activation file (local to this machine)
 .squad-workstream
+
+# Ignore build outputs for all projects
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+
+# Visual Studio artifacts
+.vs/
+*.user
+*.suo
+*.userosscache
+
+# Rider / IDE
+.idea/
+*.sln.iml
+
+# dotnet tools and caches
+.dotnet/
+.nuget/
+*.nupkg
+
+# Playwright and test generated files
+**/.playwright/
+**/playwright/
+tests/**/bin/
+tests/**/obj/
+
+# Logs and temp
+*.log
+*.cache
